@@ -4,7 +4,18 @@ public class VRRig : MonoBehaviour
 {
     [SerializeField] Color outlineColor;
     public static VRRig Instance { get; private set; }
+    [field: SerializeField] public Transform head { get; private set; }
     [SerializeField] VRController[] controllers;
+
+    public enum ControllerHand
+    {
+        Left, Right
+    };
+
+    public enum ControllerButton
+    {
+        Trigger, Grip, Thumbstick, Primary, Secondary
+    }
 
     private void Start()
     {
@@ -24,5 +35,17 @@ public class VRRig : MonoBehaviour
         Gizmos.DrawLine(leftForward, leftBack);
         Gizmos.DrawLine(rightForward, leftForward);
         Gizmos.DrawLine(rightBack, leftBack);
+    }
+
+    public VRController GetController(ControllerHand hand)
+    {
+        if(hand == ControllerHand.Left)
+        {
+            return controllers[0];
+        }
+        else
+        {
+            return controllers[1];
+        }
     }
 }

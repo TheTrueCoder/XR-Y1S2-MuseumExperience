@@ -162,6 +162,33 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f18a381-b7b6-455a-95cd-2413838b485d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ba07383-a572-4e07-b439-2c2143af40dc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f444364-8706-4f75-a575-79bc22f70cce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +279,39 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
                     ""action"": ""SecondaryButtonPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6eef1331-69dc-4bf2-a504-ac48b25a1b70"",
+                    ""path"": ""<XRController>/{Primary2DAxisClick}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""478f2516-320f-4e0d-accc-fc7bc95228d2"",
+                    ""path"": ""<XRController>/{GripButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8c673c5-75a9-44de-95bf-a07fc4cca0b5"",
+                    ""path"": ""<XRController>/{TriggerButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -268,6 +328,9 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
         m_VRInputs_AnalogValue = m_VRInputs.FindAction("AnalogValue", throwIfNotFound: true);
         m_VRInputs_PrimaryButtonPressed = m_VRInputs.FindAction("PrimaryButtonPressed", throwIfNotFound: true);
         m_VRInputs_SecondaryButtonPressed = m_VRInputs.FindAction("SecondaryButtonPressed", throwIfNotFound: true);
+        m_VRInputs_Teleport = m_VRInputs.FindAction("Teleport", throwIfNotFound: true);
+        m_VRInputs_Grab = m_VRInputs.FindAction("Grab", throwIfNotFound: true);
+        m_VRInputs_Interact = m_VRInputs.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@VRActions()
@@ -356,6 +419,9 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_VRInputs_AnalogValue;
     private readonly InputAction m_VRInputs_PrimaryButtonPressed;
     private readonly InputAction m_VRInputs_SecondaryButtonPressed;
+    private readonly InputAction m_VRInputs_Teleport;
+    private readonly InputAction m_VRInputs_Grab;
+    private readonly InputAction m_VRInputs_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "VRInputs".
     /// </summary>
@@ -399,6 +465,18 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "VRInputs/SecondaryButtonPressed".
         /// </summary>
         public InputAction @SecondaryButtonPressed => m_Wrapper.m_VRInputs_SecondaryButtonPressed;
+        /// <summary>
+        /// Provides access to the underlying input action "VRInputs/Teleport".
+        /// </summary>
+        public InputAction @Teleport => m_Wrapper.m_VRInputs_Teleport;
+        /// <summary>
+        /// Provides access to the underlying input action "VRInputs/Grab".
+        /// </summary>
+        public InputAction @Grab => m_Wrapper.m_VRInputs_Grab;
+        /// <summary>
+        /// Provides access to the underlying input action "VRInputs/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_VRInputs_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -449,6 +527,15 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
             @SecondaryButtonPressed.started += instance.OnSecondaryButtonPressed;
             @SecondaryButtonPressed.performed += instance.OnSecondaryButtonPressed;
             @SecondaryButtonPressed.canceled += instance.OnSecondaryButtonPressed;
+            @Teleport.started += instance.OnTeleport;
+            @Teleport.performed += instance.OnTeleport;
+            @Teleport.canceled += instance.OnTeleport;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -484,6 +571,15 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
             @SecondaryButtonPressed.started -= instance.OnSecondaryButtonPressed;
             @SecondaryButtonPressed.performed -= instance.OnSecondaryButtonPressed;
             @SecondaryButtonPressed.canceled -= instance.OnSecondaryButtonPressed;
+            @Teleport.started -= instance.OnTeleport;
+            @Teleport.performed -= instance.OnTeleport;
+            @Teleport.canceled -= instance.OnTeleport;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -580,5 +676,26 @@ public partial class @VRActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSecondaryButtonPressed(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Teleport" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTeleport(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Grab" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGrab(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

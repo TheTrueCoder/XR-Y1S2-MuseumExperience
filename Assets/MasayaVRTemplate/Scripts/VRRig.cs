@@ -6,6 +6,7 @@ public class VRRig : MonoBehaviour
     public static VRRig Instance { get; private set; }
     [field: SerializeField] public Transform head { get; private set; }
     [SerializeField] VRController[] controllers;
+    BoxCollider bc;
 
     public enum ControllerHand
     {
@@ -22,6 +23,23 @@ public class VRRig : MonoBehaviour
         Instance = this;
         controllers[0].Initialise(this);
         controllers[1].Initialise(this);
+
+        bc = GetComponent<BoxCollider>(); 
+    }
+
+    private void Update()
+    {
+        UpdateCollider();
+    }
+
+    void UpdateCollider()
+    {
+        Vector3 headPos = head.localPosition;
+        Vector3 colSize = new Vector3(0.1f, 0.1f, 0.1f);
+        headPos.y /= 2;
+        bc.center = headPos;
+        colSize.y = head.localPosition.y;
+        bc.size = colSize;
     }
 
     private void OnDrawGizmos()

@@ -22,6 +22,7 @@ public class VRControllerGrab : MonoBehaviour
         controller.onGrabEnd -= GrabEnd;
     }
 
+    [ContextMenu("Grab Start")]
     public void GrabStart()
     {
         if(grabbableList.Count > 0)
@@ -31,6 +32,7 @@ public class VRControllerGrab : MonoBehaviour
         }
     }
 
+    [ContextMenu("Grab End")]
     public void GrabEnd()
     {
         if(currentHeld != null)

@@ -31,7 +31,7 @@ public class TestGrab : MonoBehaviour, IGrabbable
     public void GrabEnd()
     {
         transform.parent = null;
-        currentController.GrabGone(false, transform);
+        currentController.GrabGone(true, transform);
 
         currentController = null;
     }

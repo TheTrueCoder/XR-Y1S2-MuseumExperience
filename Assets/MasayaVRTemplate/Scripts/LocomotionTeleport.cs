@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem.XR;
 
 public class LocomotionTeleport : MonoBehaviour
@@ -15,6 +16,8 @@ public class LocomotionTeleport : MonoBehaviour
     GameObject teleportVisualiser;
     [SerializeField] GameObject pointer;
     LineRenderer lineRenderer;
+
+    [SerializeField] UnityEvent afterTeleport;
 
     bool teleportPoint;
 
@@ -72,6 +75,9 @@ public class LocomotionTeleport : MonoBehaviour
             teleportDestination -= new Vector3(vrRig.head.localPosition.x, 0, vrRig.head.localPosition.z);
             vrRig.transform.position = teleportDestination;
             teleportVisualiser.SetActive(false);
+
+            //Run stuff after teleport (e.g. sound effects)
+            afterTeleport.Invoke();
         }
 
         pointer.SetActive(false);

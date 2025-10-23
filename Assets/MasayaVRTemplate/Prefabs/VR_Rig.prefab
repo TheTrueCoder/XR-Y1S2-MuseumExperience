@@ -117,7 +117,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -228,6 +228,9 @@ MonoBehaviour:
   teleportHand: 1
   teleportPrefab: {fileID: 7690102493280375231, guid: 734b65d0bb0ca884298be0700b63062f, type: 3}
   pointer: {fileID: 1293590870800188673}
+  afterTeleport:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1293590870800188673
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733e6aecb40ca4a4db9994da6c88b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objList: []
 --- !u!114 &1651740489120342102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,6 +1064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733e6aecb40ca4a4db9994da6c88b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objList: []
 --- !u!114 &9018626130346451626
 MonoBehaviour:
   m_ObjectHideFlags: 0
